@@ -1,15 +1,42 @@
-{% import 'main/macros.tpl.html' as macro %}
-<div class="container">
-  <form class="form-signin" method="post">
-	{{ macro.csrf_input() }}
-    <h3 class="form-signin-heading">{{ title_sign_in }}</h3>
-    <input type="text" name="user_name" class="input-block-level" placeholder="{{ label_username }}" value="{{ value_user_name }}" required>
-    <input type="password" name="user_password" class="input-block-level" placeholder="{{ label_password }}" required>
-	<input type="hidden" name="action" value="login">
-    <label class="checkbox">
-  	  <input type="checkbox" name="user_rememberme" value="1" {{ value_rememberme }}> {{ label_remember_me }}
-    </label>
-    <button class="btn btn-primary" type="submit">{{ label_login }}</button>
+{% extends 'main/login.tpl.html' %}
+
+{% set title = page_title %}
+
+
+{% block content %}
+
+    {% import 'main/macros.tpl.html' as macro %}
+
+    <form class="form-signin" method="post">
+
+        {{ macro.csrf_input() }}
+        <input type="hidden" name="action" value="login">
+
+        <div class="form-group has-feedback">
+            <input type="text" name="user_name" class="form-control" placeholder="{{ label_username }}" value="{{ value_user_name }}" required>
+            <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        </div>
+
+        <div class="form-group has-feedback">
+            <input type="password" name="user_password" class="form-control" placeholder="{{ label_password }}" required>
+            <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-8">
+                <div class="checkbox icheck">
+                    <label>
+                        <input type="checkbox" name="user_rememberme" value="1" {{ value_rememberme }}> {{ label_remember_me }}
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-4">
+                <button type="submit" class="btn btn-primary btn-block btn-flat" >{{ label_login }}</button>
+            </div>
+        </div>
+
+    </form>
+
     <a class="btn" href="?action=forgot">{{ label_password_forgot }}</a>
-  </form>
-</div>
+
+{% endblock %}

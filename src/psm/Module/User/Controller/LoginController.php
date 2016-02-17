@@ -29,6 +29,7 @@
 namespace psm\Module\User\Controller;
 use psm\Module\AbstractController;
 use psm\Service\Database;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginController extends AbstractController {
 
@@ -63,6 +64,7 @@ class LoginController extends AbstractController {
 		}
 
 		$tpl_data = array(
+			'page_title' => strtoupper(psm_get_lang('system', 'title')),
 			'title_sign_in' => psm_get_lang('login', 'title_sign_in'),
 			'label_username' => psm_get_lang('login', 'username'),
 			'label_password' => psm_get_lang('login', 'password'),
@@ -73,7 +75,8 @@ class LoginController extends AbstractController {
 			'value_rememberme' => (isset($rememberme) && $rememberme) ? 'checked="checked"' : '',
 		);
 
-		return $this->twig->render('module/user/login/login.tpl.html', $tpl_data);
+		return new Response($this->twig->render('module/user/login/login.tpl.html', $tpl_data));
+		#return $this->twig->render('module/user/login/login.tpl.html', $tpl_data);
 	}
 
 	/**

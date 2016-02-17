@@ -31,12 +31,16 @@
                 </div>
             </div>
             <div class="col-xs-4">
-                <button type="submit" class="btn btn-primary btn-block btn-flat" >{{ label_login }}</button>
+                <button type="submit" class="btn btn-primary btn-block btn-flat">{{ label_login }}</button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 text-right">
+                <a href="?action=forgot">{{ label_password_forgot }}</a>
             </div>
         </div>
 
     </form>
-
-    <a class="btn" href="?action=forgot">{{ label_password_forgot }}</a>
 
 {% endblock %}

@@ -105,12 +105,15 @@ class LoginController extends AbstractController {
 		}
 
 		$tpl_data = array(
+			'page_title' => strtoupper(psm_get_lang('system', 'title')),
 			'title_forgot' => psm_get_lang('login', 'title_forgot'),
 			'label_username' => psm_get_lang('login', 'username'),
 			'label_submit' => psm_get_lang('login', 'submit'),
 			'label_go_back' => psm_get_lang('system', 'go_back'),
 		);
-		return $this->twig->render('module/user/login/forgot.tpl.html', $tpl_data);
+
+		return new Response($this->twig->render('module/user/login/forgot.tpl.html', $tpl_data));
+		#return $this->twig->render('module/user/login/forgot.tpl.html', $tpl_data);
 	}
 
 	/**
